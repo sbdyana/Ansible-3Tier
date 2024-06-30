@@ -1,0 +1,13 @@
+---
+- name : Install nginx on ubuntu
+  hosts: user21
+  remote_user: ansible-user21
+  #become: yes
+  
+  tasks:
+  - name: update apt repo and cache
+    apt: update_cache=yes force_apt_get=yes
+  - name: install nginx web server
+    action: apt name=nginx state=present
+  - name: start nginx
+    service: name=nginx state=started
