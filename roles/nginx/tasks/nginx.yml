@@ -1,0 +1,37 @@
+---
+    
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Create directory for static content
+  file:
+    path: /var/www/html/sb-world
+    state: directory
+    mode: 0755
+
+- name: Create "index.html" file with "sb-summer" content
+  template:
+    src: templates/index.html.j2 
+    dest: /var/www/html/sb-world/sb-summer.html
+    mode: 0644
+    remote_src: true
+
+- name: Copy "index.html" to default Nginx location
+  copy:
+    src: /var/www/html/sb-world/sb-summer.html
+    dest: /var/www/html/sb-summer.html
+    mode: 0644
+    remote_src: true
+
+- name: Enable default Nginx website
+  file:
+    src: /etc/nginx/sites-available/default
+    path: /etc/nginx/sites-enabled/default
+    state: link
+
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted

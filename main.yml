@@ -1,0 +1,8 @@
+---
+- name : Install tomcat on ubuntu
+  hosts: tomcat_server
+  become: yes
+
+  tasks:
+  - import_tasks: roles/common/tasks/update.yml
+  - import_tasks: roles/tomcat/tasks/tomcat.yml
