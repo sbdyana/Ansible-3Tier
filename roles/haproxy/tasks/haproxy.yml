@@ -1,0 +1,31 @@
+---
+
+- name: Install Haproxy
+  apt:
+    name: haproxy
+    state: present
+
+- name: Ensure HAProxy is enabled and started
+  service:
+    name: haproxy
+    enabled: yes
+    state: started
+
+- name: Copy "haproxy.cfg.j2" template from local to remote server
+  template:
+    src: templates/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0644
+  when: ansible_service_mgr == "systemd"
+
+- name: Copy "pem.j2" template from local to remote server
+  template:
+    src: templates/sbworld.ddimtech.click.pem.j2
+    dest: /etc/haproxy/sbworld.ddimtech.click.pem
+    mode: 0644
+  when: ansible_service_mgr == "systemd"
+
+- name: Restart haproxy
+  service:
+    name: haproxy
+    state: restarted
