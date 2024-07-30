@@ -3,13 +3,13 @@
   package:
     name: "{{item}}"
     state: present
-    update_cache: yes
-    loop:
-      - mysql-server
-      - mysql-client
-      - python3-mysqldb
-      - libmysqlclient-dev
-    become: yes
+    update_cache: yes  
+  loop:
+    - mysql-server
+    - mysql-client
+    - python3-mysqldb
+    - libmysqlclient-dev
+  become: yes
 
 - name: start and enable mysql service
   service:
@@ -38,4 +38,5 @@
     backup: yes
   notify:
     - Restart mysql
+
 

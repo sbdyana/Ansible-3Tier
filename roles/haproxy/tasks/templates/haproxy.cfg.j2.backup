@@ -40,7 +40,5 @@ frontend https_front
 
 backend http_back
     balance roundrobin
-    server nginx1 sbworld-web-1.ddimtech.click:443 ssl verify none
-    server nginx2 sbworld-web-2.ddimtech.click:443 ssl verify none
-    #server nginx1 77.88.140.23:80 check
-    #server nginx2 77.88.140.24:80 check
+    server nginx1 77.88.140.21:80 check
+    server nginx2 77.88.140.22:80 check

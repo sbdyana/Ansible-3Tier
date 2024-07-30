@@ -1,0 +1,15 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html/;
+	index sb-summer.html ndex.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		root /var/www/html/;
+        	index sb-summer.html ndex.html index.htm index.nginx-debian.html;
+	}
+
+}

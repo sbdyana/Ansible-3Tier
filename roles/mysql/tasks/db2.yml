@@ -1,0 +1,21 @@
+- name: mysql setting Master
+  blockinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    block: |
+      server-id = 1
+      log_bin = /var/log/mysql/mysql-bin.log
+  when: ansible_facts.hostname == "mysql1"
+  notify:
+    - Restart mysql
+
+- name: mysql setting Slave
+  blockinfile:
+    path: /etc/mysql/mysql.conf.d/mysqld.cnf
+    block: |
+      server-id = 2
+      relay_log = mysql-relay-bin
+  when: ansible_facts.hostname == "mysql2"
+  notify:
+    - Restart mysql
+
+

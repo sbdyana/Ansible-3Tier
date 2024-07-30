@@ -1,8 +1,11 @@
 ---
-- name : Install tomcat on ubuntu
-  hosts: local
+- name : Install mysql 
+  hosts: tomcat_server
   become: yes
 
   tasks:
-  - import_tasks: roles/common/tasks/update.yml
-  - import_tasks: roles/haproxy/tasks/haproxy.yml
+          #- import_tasks: roles/common/tasks/update.yml
+  - import_tasks: roles/tomcat/tasks/tomcat.yml
+  
+    # handlers:
+    #- import_tasks: roles/mysql/handlers/mysql_handlers.yml

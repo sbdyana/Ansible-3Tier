@@ -5,24 +5,41 @@
     name: nginx
     state: present
 
+- name: Copy "opensb.png" to html directory
+  copy:
+    src: templates/cert
+    dest: /etc/ssl/
+
 - name: Create directory for static content
   file:
     path: /var/www/html/sb-world
     state: directory
     mode: 0755
 
-- name: Create "index.html" file with "sb-summer" content
+- name: Create "index.html" file with "openpage" content
   template:
-    src: templates/index.html.j2
-    dest: /var/www/html/sb-world/sb-summer.html
+    src: templates/openpage.html.j2
+    dest: /var/www/html/sb-world/openpage.html
     mode: 0644
 
-- name: Copy "index.html" to default Nginx location
+- name: Copy "openpage.html" to default Nginx location
   copy:
-    src: /var/www/html/sb-world/sb-summer.html
-    dest: /var/www/html/sb-summer.html
+    src: /var/www/html/sb-world/openpage.html
+    dest: /var/www/html/openpage.html
     mode: 0644
     remote_src: true
+
+- name: Change "nginx.conf" file
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+    mode: 0644
+
+- name: Copy "opensb.png" to html directory
+  copy:
+    src: templates/opensb.png
+    dest: /var/www/html/opensb.png
+    
 
 - name: Enable default Nginx website
   file:

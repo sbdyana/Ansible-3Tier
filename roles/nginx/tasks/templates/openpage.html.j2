@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입장 페이지</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFFFFF; /* 바깥 흰색 배경 */
+        }
+        .wrapper {
+            margin: 20px; /* 마진 추가 */
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: calc(100% - 200px); /* 마진을 고려한 너비 조정 */
+            height: calc(100vh - 200px); /* 마진을 고려한 높이 조정 */
+            background-color: #97caf6; /* 연한 노란색 배경 */
+            border-radius: 25px; /* 바깥 배경 둥근 모서리 */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            box-sizing: border-box; /* 패딩 포함 */
+            position: relative;
+        }
+        .content {
+            text-align: center;
+        }
+        .container {
+            background-color: #FFFFFF; /* 하얀색 박스 */
+            border-radius: 15px; /* 둥근 모서리 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .enter-button {
+            background-color: #4a8fc4;/* 초록색 배경 */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none; /* 링크 스타일 제거 */
+            display: inline-block;
+        }
+        .enter-button:hover {
+            background-color: #45a049;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        img {
+            max-width: 40%;
+            height: auto;
+            border-radius: 10px; /* 이미지 둥근 모서리 */
+            margin-bottom: 20px; /* 이미지 아래 여백 */
+        }
+        .welcome-text {
+            font-size: 24px;
+            margin-bottom: 20px; /* 텍스트 아래 여백 */
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <img src="opensb.png" alt="SB World">
+            <div class="welcome-text">Welcome to SB World!</div>
+        </div>
+        <div class="container">
+		<a href="https://{{변수처리}}" class="enter-button">지금 바로 입장</a>
+        </div>
+    </div>
+</body>
+</html>
+
