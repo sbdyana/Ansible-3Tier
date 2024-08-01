@@ -1,7 +1,7 @@
 upstream tomcat_group {
         ip_hash ;
-        server sbworld-was-1.ddimtech.click:8080 weight=1 max_fails=6 fail_timeout=10s;
-        server sbworld-was-2.ddimtech.click:8080;
+        server sbworld-was-1.ddimtech.click:8443 weight=1 max_fails=6 fail_timeout=10s;
+        server sbworld-was-2.ddimtech.click:8443;
 }
 
 
@@ -64,7 +64,7 @@ server {
 
         location / {
                 try_files $uri $uri/ =404;
-                proxy_pass http://tomcat_group;
+                proxy_pass https://tomcat_group;
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

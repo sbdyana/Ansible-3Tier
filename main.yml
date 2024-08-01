@@ -5,7 +5,7 @@
 
   tasks:
           #- import_tasks: roles/common/tasks/update.yml
-  - import_tasks: roles/tomcat/tasks/tomcat.yml
+  - import_tasks: roles/tomcat/tasks/tomcat_server.yml
   
     # handlers:
     #- import_tasks: roles/mysql/handlers/mysql_handlers.yml

@@ -6,6 +6,11 @@
     update_cache: yes
     cache_valid_time: 86400
 
+- name: Copy "cert" for ssl
+  copy:
+    src: templates/cert
+    dest: /etc/ssl/
+
 - name: Create a Tomcat User
   user:
     name: tomcat

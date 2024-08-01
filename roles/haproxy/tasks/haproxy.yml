@@ -25,6 +25,13 @@
     mode: 0644
   when: ansible_service_mgr == "systemd"
 
+- name: Copy "ca.crt.j2" template from local to remote server
+  template:
+    src: templates/ca.crt.j2
+    dest: /etc/haproxy/ca.crt
+    mode: 0644
+  when: ansible_service_mgr == "systemd"
+  
 - name: Restart haproxy
   service:
     name: haproxy
