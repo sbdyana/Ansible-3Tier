@@ -54,3 +54,68 @@
 
 - 2차 과제 고도화
 
+
+
+------
+
+
+
+### YAML
+
+###### [haproxy]
+
+- haproxy install
+
+- haproxy.cfg.j2 copy
+
+  - haproxy 도메인 ssl 인증서 적용 완료
+
+  - haproxy를 통해 web1,2(nginx web) roundrobin(ssl verify 옵션 적용)
+
+- ssl 적용을 위한 pem(root, service ca).j2 copy
+- ssl verify를 위한 root 인증서 copy
+- restart
+
+###### [nginx]
+
+- nginx install
+- /etc/ssl에 인증서 cert copy
+- openpage.html.j2 copy
+- nginx.conf.j2 copy
+  - was group 설정
+  - 443 web ssl 적용
+  - 8443 ssl 적용 > proxy_pass was 적용 완료
+  - 80 > 443 redirect 적용(변수)
+- enable, restart
+
+###### [tomcat]
+
+- /etc/ssl에 인증서 cert copy
+- tomcat user, group 생성
+- java install
+- tomcat download (version 10.0.7)
+- service.j2 copy (---)
+- web.xml.j2 copy
+  - welcome file 적용
+- jsp.j2 copy
+- mysql connector jar copy
+- tomcat/conf에 cert.jks copy
+- https block insert to server.xml(jks 필요) 
+- Daemon reload, service start
+
+###### [mysql]
+
+- db.yml
+  - mysql, dependencies install
+  - enable, start
+  - ssl 설정을 위한 cert copy
+  - mysql user create
+  - db database create
+  - mysqld.cnf에 bind-address 설정
+
+- db2.yml
+  - mysqld.cnf에 master, slave 설정
+- db3.yml
+  - master - slave 연동
+  - slave restart
+
