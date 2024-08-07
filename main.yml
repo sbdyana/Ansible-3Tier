@@ -1,11 +1,11 @@
 ---
 - name : Install mysql 
-  hosts: tomcat_server
+  hosts: mysql_server
   become: yes
 
   tasks:
           #- import_tasks: roles/common/tasks/update.yml
-  - import_tasks: roles/tomcat/tasks/tomcat_server.yml
+  - import_tasks: roles/mysql/tasks/db3.yml
   
     # handlers:
     #- import_tasks: roles/mysql/handlers/mysql_handlers.yml

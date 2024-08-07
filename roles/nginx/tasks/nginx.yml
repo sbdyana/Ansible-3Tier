@@ -21,6 +21,19 @@
     src: templates/nginx.conf.j2
     dest: /etc/nginx/sites-available/default
     mode: 0644
+  vars:
+    web: 'sbworld-web-1'
+  when: ansible_facts.hostname == "web1"
+
+
+- name: Change "nginx.conf" file
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+    mode: 0644
+  vars:
+    web: 'sbworld-web-2'
+  when: ansible_facts.hostname == "web2"
 
 - name: Copy "opensb.png" to html directory
   copy:

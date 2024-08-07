@@ -1,20 +1,37 @@
 - name: stop Slave
   mysql_replication:
     mode: stopreplica
+  when: ansible_facts.hostname == "mysql2"
+
+- name: reset Slave
+  mysql_replication:
+    mode: resetreplica
+  when: ansible_facts.hostname == "mysql2"
+
 - name: configure mysql Slave
   mysql_replication:
     master_host: "{{ master }}" # master db server ip
-    master_user: admin # M - S 연결 관리자 계정
+    master_user: 'admin' # M - S 연결 관리자 계정
     master_password: 'Passw0rd'
-    master_log_file: mysql-bin.000002 # Master 정보 넣어준다
+    master_port: 3306
+    master_log_file: 'mysql-bin.000026' # Master 정보 넣어준다
     master_log_pos: 157
+    master_ssl: 1
+    master_ssl_ca: '/etc/mysql/cert/ca.pem'
+    master_ssl_cert: '/etc/mysql/cert/service.crt'
+    master_ssl_key: '/etc/mysql/cert/service.key'
     mode: changeprimary
+  vars:
+    master: "77.88.140.27"
+  when: ansible_facts.hostname == "mysql2"
 
 - name: start Slave
   mysql_replication:
-    mode: resetreplica
+    mode: startreplica
+  when: ansible_facts.hostname == "mysql2"
 
 - name: Restart mysql
   service:
     name: mysql
     state: restarted
+  when: ansible_facts.hostname == "mysql2"

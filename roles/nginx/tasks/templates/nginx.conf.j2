@@ -14,8 +14,14 @@ server {
         # Add index.php to the list if you are using PHP
         index sb-summer.jsp openpage.html ndex.html index.htm index.nginx-debian.html;
 
-	location / {
-        	return 301 https://sbworld-web-2.ddimtech.click;
+
+        location / {
+                try_files $uri $uri/ =404;
+                #proxy_pass http://localhost:80;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                charset utf-8;
         }
 
 }
@@ -33,14 +39,10 @@ server {
 	root /var/www/html/;
         index sb-summer.jsp openpage.html ndex.html index.htm index.nginx-debian.html;
 
+        
         location / {
-                try_files $uri $uri/ =404;
-                #proxy_pass http://localhost:80;
-                proxy_set_header Host $host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                charset utf-8;
-        }
+        	return 301 https://{{ web }}.ddimtech.click;
+        } 
 }
 
 server {

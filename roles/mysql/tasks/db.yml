@@ -17,6 +17,11 @@
     state: started
     enabled: yes
 
+- name: Copy "cert" for ssl
+  copy:
+    src: templates/cert
+    dest: /etc/mysql/
+
 - name: creating mysql user (medium_post)
   mysql_user:
     name: "admin"

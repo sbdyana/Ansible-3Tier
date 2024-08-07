@@ -89,7 +89,26 @@
     src: tomcat-users.xml.j2
     dest: /usr/share/tomcat/conf/tomcat-users.xml
 
-- name: Deamon reload.
+- name: Insert Connector block after <Service name="Catalina">
+  blockinfile:
+    path: /usr/share/tomcat/conf/server.xml
+    marker: <!-- {mark} -->
+    insertafter: '<Service name="Catalina">'
+    block: |
+      <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true">
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+        <SSLHostConfig>
+          <Certificate certificateKeystoreFile="/usr/share/tomcat/conf/sbcert.jks" certificateKeystorePassword="ddimtech21!" type="RSA" />
+        </SSLHostConfig>
+      </Connector>
+
+- name: Copy "sbcert.jks" to was server.xml
+  copy:
+    src: templates/sbcert.jks
+    dest: /usr/share/tomcat/conf/
+    owner: tomcat
+    group: tomcat
+- name: Daemon reload.
   command: systemctl daemon-reload
 
 - name: Starting Apache Tomcat service.
