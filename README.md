@@ -10,6 +10,8 @@
 
 
 
+
+
 ### 인프라
 
 ------
@@ -23,6 +25,8 @@
 | **77.88.140.26** | Ubuntu | 2/4/16  | Slt_sb.yang_WAS2 | tomcat                      |
 | **77.88.140.27** | Ubuntu | 2/4/30  | Slt_sb.yang_DB1  | mysql                       |
 | **77.88.140.28** | Ubuntu | 2/4/30  | Slt_sb.yang_DB2  | mysql                       |
+
+
 
 
 
